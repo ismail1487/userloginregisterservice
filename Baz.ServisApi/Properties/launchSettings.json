@@ -3,7 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:51303",
+      "applicationUrl": "http://localhost:5001", // Mac cihaz için
+      //"applicationUrl": "http://localhost:51303", // Windows cihaz için
       "sslPort": 0
     }
   },
@@ -25,7 +26,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": "true",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+      "applicationUrl": "http://localhost:51303" // Mac cihaz için
+      //"applicationUrl": "http://localhost:5001" // Windows cihaz için
     },
     "Docker": {
       "commandName": "Docker",
