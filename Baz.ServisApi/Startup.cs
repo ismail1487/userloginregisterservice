@@ -26,6 +26,9 @@ using System.Linq;
 using System.Text;
 using Baz.Service;
 using Baz.AletKutusu;
+using Baz.Model.Entity.Constants;
+using static System.Collections.Specialized.BitVector32;
+using System.Configuration;
 
 namespace Baz.UserLoginServiceApi
 {
@@ -60,6 +63,14 @@ namespace Baz.UserLoginServiceApi
         public void ConfigureServices(IServiceCollection services)
         {
             Model.Entity.Constants.LocalPortlar.CoreUrl = Configuration.GetValue<string>("CoreUrl");
+
+            var section = Configuration.GetSection("LocalPortlar");
+            LocalPortlar.WebApp = section.GetValue<string>("WebApp");
+            LocalPortlar.UserLoginregisterService = section.GetValue<string>("UserLoginregisterService");
+            LocalPortlar.KisiServis = section.GetValue<string>("KisiServis");
+            LocalPortlar.MedyaKutuphanesiService = section.GetValue<string>("MedyaKutuphanesiService");
+            LocalPortlar.IYSService = section.GetValue<string>("IYSService");
+            LocalPortlar.KurumService = section.GetValue<string>("KurumService");
 
             services.AddHttpContextAccessor();
             services.AddControllers(c => { c.Filters.Add(typeof(ModelValidationFilter), int.MinValue); });

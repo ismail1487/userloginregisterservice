@@ -6,12 +6,14 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Baz.ServisApi/Baz.UserLoginServiceApi.csproj", "Baz.ServisApi/"]
-COPY ["Baz.Service/Baz.Service.csproj", "Baz.Service/"]
-RUN dotnet restore "Baz.ServisApi/Baz.UserLoginServiceApi.csproj" -s http://127.0.0.1:4444/v3/index.json -s https://api.nuget.org/v3/index.json
+COPY ["bazuserloginregisterservis/Baz.ServisApi/Baz.UserLoginServiceApi.csproj", "bazuserloginregisterservis/Baz.ServisApi/"]
+COPY ["bazuserloginregisterservis/Baz.Service/Baz.Service.csproj", "bazuserloginregisterservis/Baz.Service/"]
+COPY packages /src/packages
+RUN dotnet restore "bazuserloginregisterservis/Baz.ServisApi/Baz.UserLoginServiceApi.csproj" --source /src/packages  --source https://api.nuget.org/v3/index.json
 
-COPY . .
-WORKDIR "/src/Baz.ServisApi"
+COPY bazuserloginregisterservis/Baz.ServisApi bazuserloginregisterservis/Baz.ServisApi
+COPY bazuserloginregisterservis/Baz.Service bazuserloginregisterservis/Baz.Service
+WORKDIR "/src/bazuserloginregisterservis/Baz.ServisApi"
 RUN dotnet build "Baz.UserLoginServiceApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
