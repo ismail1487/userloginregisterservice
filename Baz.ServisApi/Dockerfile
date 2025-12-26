@@ -9,7 +9,7 @@ WORKDIR /src
 COPY ["bazuserloginregisterservis/Baz.ServisApi/Baz.UserLoginServiceApi.csproj", "bazuserloginregisterservis/Baz.ServisApi/"]
 COPY ["bazuserloginregisterservis/Baz.Service/Baz.Service.csproj", "bazuserloginregisterservis/Baz.Service/"]
 COPY packages /src/packages
-RUN dotnet restore "bazuserloginregisterservis/Baz.ServisApi/Baz.UserLoginServiceApi.csproj" --source https://https://nuget.cdn.azure.cn/v3/index.json --source /src/packages
+RUN dotnet restore "bazuserloginregisterservis/Baz.ServisApi/Baz.UserLoginServiceApi.csproj" --source https://nuget.cdn.azure.cn/v3/index.json --source /src/packages
 
 COPY bazuserloginregisterservis/Baz.ServisApi bazuserloginregisterservis/Baz.ServisApi
 COPY bazuserloginregisterservis/Baz.Service bazuserloginregisterservis/Baz.Service
